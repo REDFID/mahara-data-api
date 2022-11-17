@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    command: "gunicorn --workers=2 manage:app --bind=0.0.0.0:7000 --name=MaharaDataAPI"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6-alpine
